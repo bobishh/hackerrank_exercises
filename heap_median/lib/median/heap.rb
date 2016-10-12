@@ -75,7 +75,7 @@ module Median
     end
 
     def parent_node_index(index)
-      (index - 2) / 2
+      ((index - 2) / 2.0).ceil
     end
 
     def left_node_index(index)
