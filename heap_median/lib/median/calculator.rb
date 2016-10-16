@@ -21,7 +21,7 @@ module Median
     private
 
     def calculate_median
-      elements = @heap.elements
+      elements = @heap.sorted
       return 0.0 if elements.empty?
       if elements.size.odd?
         middle_element(elements)
