@@ -1,4 +1,5 @@
 require_relative './heap'
+require "bigdecimal"
 
 module Median
   # calculates median
