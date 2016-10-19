@@ -65,3 +65,22 @@
   (it "removes number from root and reorganizes heap"
     (should= '(1 [2 3])  (poll [1 2 3]))
     ))
+
+(def heap (into (vector) (reduce #(<< %2 %1) (range 1 30) [])))
+
+(describe "sorted"
+  (it "returns sorted array from a heap"
+      (should= (sort heap) (sorted heap []))
+      ))
+
+(def sorted-heap [1 2 3 4 5 6 7 8 9 10])
+
+(describe "median"
+  (it "returns median of a heap"
+    (should= 5.5 (median sorted-heap))))
+
+(describe "get-middle"
+          (it "returns middle elements"
+              (should= 1 (get-middle [2 1 3]))
+              (should= '[1 2] (get-middle [0 1 2 3]))
+              ))

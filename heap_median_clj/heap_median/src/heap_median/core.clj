@@ -85,3 +85,45 @@
   (let [swapped (swap heap 0 (- (count heap) 1)) vhead (peek swapped) rest (pop swapped)]
     (list vhead (heapify-down rest 0))
     ))
+
+(defn sorted [heap acc]
+  (let [polled (poll heap) vhead (first polled) rest (second polled)]
+    (if (empty? rest)
+      (conj acc vhead)
+      (sorted rest (conj acc vhead))
+      )
+    )
+  )
+
+(defn- half-size [vec] (int (/ (count vec) 2)))
+
+(defn- median-of-two [vec]
+  (let [a (first vec)
+        b (second vec)]
+    (-> (+ a b)
+        (/ 2)
+        (float)
+        )
+    ))
+
+(defn- get-two [vec]
+  (let [second-index (half-size vec)
+        first-index (- second-index 1)]
+    (vector (nth vec first-index) (nth vec second-index))
+    ))
+
+(defn get-middle [vector]
+  (if (odd? (count vector))
+    (nth vector (half-size vector))
+    (get-two vector)
+    )
+  )
+
+(defn median [heap]
+  (let [sorted-heap (sorted heap [])
+        middle (get-middle sorted-heap)]
+    (if (vector? middle)
+      (median-of-two middle)
+      (float middle)
+      )
+    ))
