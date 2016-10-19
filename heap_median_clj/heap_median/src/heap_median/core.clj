@@ -4,7 +4,6 @@
   (-> (- index 2)
       (/ 2)
       (Math/ceil)
-      (Math/abs)
       (int)
    )
   )
@@ -55,9 +54,9 @@
 
 (defn heapify-up [vector index]
   (let [parent-index (parent index)]
-    (if (<= parent-index 0)
+    (if (< parent-index 0)
       vector
-      (if (not (nice-parent? vector index))
+      (if (not (nice-parent? vector parent-index))
         (heapify-up (swap vector index parent-index) parent-index)
         (heapify-up vector parent-index)
         )

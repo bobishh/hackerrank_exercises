@@ -12,7 +12,9 @@
 
 (describe "#parent"
   (it "returns parent node index for index"
-    (should= 0 (parent 1))))
+      (should= 0 (parent 1))
+      (should= -1 (parent 0))
+  ))
 
 (describe "swap"
   (it "swaps elements in vector"
